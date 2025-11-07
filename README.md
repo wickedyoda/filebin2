@@ -26,6 +26,11 @@ The development environment consists of one PostgreSQL instance, one MinIO objec
 docker-compose up --build
 ```
 
+The repository ships with a [`.env`](./.env) file that disables BuildKit during
+`docker-compose` builds. This works around a long-standing incompatibility
+between Docker Compose v1.29 and images built with BuildKit that otherwise
+surface as `KeyError: 'ContainerConfig'` when containers are recreated.
+
 This will make:
 
 * Filebin2 available on [http://localhost:8080/](http://localhost:8080/).
